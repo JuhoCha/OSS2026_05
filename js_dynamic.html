@@ -3,8 +3,36 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name vewport contnet="width=device">
+    <meta name vewport contnet="width=device-width, initial-scale=1.0">
     
+    <script>
+        window.addEventListener("load", function () {
+            const inputtext = document.querySelector('#inputtext');
+            const addB = document.querySelector('#addB');
+            const textlist = document.querySelector('#textlist')//id 오타 조심;
+
+            function addlist() {
+                const li = document.createElement('li');
+                const text = document.createElement('span');
+                const deleteB = document.createElement('button');
+
+                text.innerText = inputtext.value;
+                deleteB.innerText = '삭제'
+
+                deleteB.addEventListener('click', function () {
+                    li.remove();
+                })
+
+                li.appendChild(text);
+                li.appendChild(deleteB);
+                textlist.appendChild(li);
+
+                inputtext.value = '';
+            }
+
+            addB.addEventListener('click', addlist);
+        })
+    </script>
 </head>
 
 <body>
