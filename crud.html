@@ -14,13 +14,28 @@
 <body>
     <div class="todo-list">
         TODO LIST<br>
-        제목 : <input type="text" placeholder="제목"> <br>
-        과목 : <input type="text" placeholder="과목"> <br>
-        할일 : <input type="text" placeholder="할일"> <br>
-        기한 : <input type="date" placeholder="기한"> <br>
-        우선순위 : <input type="number" placeholder="우선순위"> <br>
-        <button>일정 등록</button>
+        제목 : <input type="text" id="title" placeholder="제목"> <br>
+        과목 : <input type="text" id="subject" placeholder="과목"> <br>
+        할일 : <input type="text" id="task" placeholder="할일"> <br>
+        기한 : <input type="date" id="deadline" placeholder="기한"> <br>
+        우선순위 : <input type="number" id="priority" placeholder="우선순위"> <br>
+        <button id="todoBtn">일정 등록</button>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>제목</th>
+                <th>과목</th>
+                <th>할일</th>
+                <th>기한</th>
+                <th>우선순위</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody id="todoList">
+        </tbody>
+    </table>
 </body>
 
 </html>
