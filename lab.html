@@ -20,18 +20,37 @@
 
         const addBtn = document.getElementById("addBtn");
 
-        window.addEventListener("load", function(){ //이게 원래 script는 body다 나오고 적용 시키려고 밑에 하는데 이거 있으면 안그래도 된다~
+        window.addEventListener("load", function () { //이게 원래 script는 body다 나오고 적용 시키려고 밑에 하는데 이거 있으면 안그래도 된다~
             const ClickBtn2 = document.querySelector("#ClickBtn2");
             ClickBtn2.addEventListener("click", function (event) {
-            ClickBtn2.innerHTML = "<h1>2버튼이 클릭되었습니다.</h1>"
-                 }
-             )
+                ClickBtn2.innerHTML = "<h1>2버튼이 클릭되었습니다.</h1>"
+            }
+            )
         })
+
+
+           function clickme() {
+            alert('Hello!');
+        }
+        window.addEventListener("load", function () {
+            const btn1 = document.querySelector("#btn1");
+            btn1.addEventListener("click", clickme);
+        });
+
+
+        function checkForm(e){//어떤거 써도 event로 받는다
+            const username = document.querySelector("#username");
+            if(username.value == ''){
+                alert('이름을 입력하세요');
+                username.focus();
+                e.preventDefault(); // 폼 제출 방지
+            }
+        }
     </script>
 </head>
 
 <body>
-
+<!--inclass activity-->
     <!--클릭버튼 실습-->
     <h3>Internal JS</h3>
     <button id="ClickBtn2">Click Me!</button>
@@ -41,12 +60,46 @@
     <button id="ClickBtn" onclick="clickMe()">Click Me!</button>
 
     <!--계산기-->
-    <h2>덧셈 계산기</h2>
-    <input id="num1" size="4">
-    <input id="num2" size="4">
-    <button id="addBtn" onclick="add()">+</button> <!--() ; 이런거 빼먹으며 ㄴ안된다..-->
-    <input id="result">
+    <h3>덧셈 계산기</h3>
+    <div class="add">
+        <input id="num1" size="4">
+        <input id="num2" size="4">
+        <button id="addBtn" onclick="add()">+</button> <!--() ; 이런거 빼먹으며 ㄴ안된다..-->
+        <input id="result">
+    </div>
+
+    <h3>EventListener 연습</h3>
+    <button id="btn1">Click me1</button>
+    <button id="btn2">Click me2</button>
+    <button id="btn3">Click me3</button>
+    <script>
+        const btn3 = document.querySelector("#btn3");
+        btn3.addEventListener("click", function () {
+            alert('Halo!');
+        })
+    </script>
+
+    <button id="btn4">Click me4</button>
+
+    <h3>폼 제출 이벤트</h3>
+    <form name="form1" action="login_ok.html" method="post">
+        <input type="text" name="username" placeholder="이름 입력">
+        <button type="submit">로그인</button>
+    </form>
+
+    <form name="form2" action="dologin.html" method="post">
+        <input type="text" name="userID" placeholder="아이디를 입력하세요"><br>
+        <input type="text" name="userPW" placeholder="비밀번호를 입력하세요">
+        <button type="submit">Login</button>
+    </form>
+
 </body>
 
-
 </html>
+
+<script>
+    const btn2 = document.querySelector("#btn2");
+    btn2.addEventListener("click", function () {
+        alert('Hola!');
+    })
+</script>

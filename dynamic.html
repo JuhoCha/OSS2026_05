@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script>
+        function delFruit(event){
+            event.target.parentElement.remove(); //삭제버튼 누르면 li가 삭제되도록
+        }
+
+        window.addEventListener("load", function () {
+            const inputtext = document.querySelector('#fruit');
+            const addB = document.querySelector('#addBtn');
+            const textlist = document.querySelector('#flist')//id 오타 조심;
+
+            addB.addEventListener("click", function(){
+                const flist = inputtext.value.split(",");
+                for(const one of flist){
+                    const li = document.createElement('li');
+                    li.textContent = one + " ";
+                    textlist.appendChild(li);
+
+                    const btn = document.createElement('button');
+                    btn.textContent = '삭제';
+                    li.appendChild(btn);
+                    btn.addEventListener('click',delFruit);
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="input">
+        <input type="text" id="fruit">
+        <button id="addBtn">추가</button>
+    </div>
+    <div class="list">
+        <ul id="flist"></ul> <!--HTML이 ul까지 알아야 하니까-->
+    </div>
+</body>
+
+</html>

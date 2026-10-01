@@ -3,15 +3,33 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name vewport contnet="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script>
+        function delFruit(event){
+            event.target.parentElement.remove(); //삭제버튼 누르면 li가 삭제되도록
+        }
+
         window.addEventListener("load", function () {
             const inputtext = document.querySelector('#inputtext');
             const addB = document.querySelector('#addB');
             const textlist = document.querySelector('#textlist')//id 오타 조심;
 
-            function addlist() {
+            addB.addEventListener("click", function(){
+                const flist = inputtext.value.split(",");
+                for(const one of flist){
+                    const li = document.createElement('li');
+                    li.textContent = one + " ";
+                    textlist.appendChild(li);
+
+                    const btn = document.createElement('button');
+                    btn.textContent = '삭제';
+                    li.appendChild(btn);
+                    btn.addEventListener('click',delFruit);
+                }
+            })
+            
+            /*function addlist() {
                 const li = document.createElement('li');
                 const text = document.createElement('span');
                 const deleteB = document.createElement('button');
@@ -31,6 +49,7 @@
             }
 
             addB.addEventListener('click', addlist);
+            */
         })
     </script>
 </head>
@@ -41,7 +60,7 @@
         <button id="addB">추가</button>
     </div>
     <div class="list">
-        <ul id="textlist"></ul>
+        <ul id="textlist"></ul> <!--HTML이 ul까지 알아야 하니까-->
     </div>
 </body>
 
