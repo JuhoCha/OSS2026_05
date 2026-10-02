@@ -16,45 +16,39 @@
 
             let idCounter = 1;
 
-        })
-        todoBtn.addEventListener("click", function () {
-            if (subjectInput.value.trim() === "") {
-                alert("과목명을 입력하세요.");
-                subjectInput.focus();
-                return;
-            }
-            if (taskInput.value.trim() === "") {
-                alert("할일을 입력하세요.");
-                taskInput.focus();
-                return;
-            }
-            if (deadlineInput.value.trim() === "") {
-                alert("기한을 입력하세요.");
-                deadlineInput.focus();
-                return;
-            }
-            if (priorityInput.value.trim() === "") {
-                alert("우선순위를 입력하세요.");
-                priorityInput.focus();
-                return;
-            }
-
-            for (const one of todoList) {
-                const li = document.createElement('li');
-                li.textContent = one + " ";
-                todoList.appendChild(li);
-
-                const btn = document.createElement('button');
-                btn.textContent = '삭제';
-                li.appendChild(btn);
-                btn.addEventListener('click', delBtn);
-            }
+            todoBtn.addEventListener("click", function () {
+                if (!titleInput.checkValidity()) {
+                    alert("제목을 5자 이상 입력해주세요!");
+                    titleInput.focus();
+                    return;
+                }
+                if (!subjectInput.checkValidity()) {
+                    alert("과목명을 입력하세요.");
+                    subjectInput.focus();
+                    return;
+                }
+                if (!taskInput.checkValidity()) {
+                    alert("할일을 입력하세요.");
+                    taskInput.focus();
+                    return;
+                }
+                if (!deadlineInput.checkValidity()) {
+                    alert("기한을 입력하세요.");
+                    deadlineInput.focus();
+                    return;
+                }
+                if (!priorityInput.checkValidity()) {
+                    alert("우선순위를 입력하세요.");
+                    priorityInput.focus();
+                    return;
+                }
+                //여기까지 상단 입력부분
 
                 const tr = document.createElement('tr');
 
                 const tdId = document.createElement('td');
-                tdId.textContent = idCounter; 
-                idCounter++; 
+                tdId.textContent = idCounter;
+                idCounter++;
 
                 const tdTitle = document.createElement('td');
                 tdTitle.textContent = titleInput.value;
@@ -71,23 +65,30 @@
                 const tdPriority = document.createElement('td');
                 tdPriority.textContent = priorityInput.value;
 
+                const tdComplete = document.createElement('td');
+                tdComplete.innerHTML = '<input type="checkbox">';
+                const tdcomplete = document.createElement("button");
+                tdcomplete.textContent = "삭제";
+
                 tr.appendChild(tdId);
                 tr.appendChild(tdTitle);
                 tr.appendChild(tdSubject);
                 tr.appendChild(tdTask);
                 tr.appendChild(tdDeadline);
                 tr.appendChild(tdPriority);
-                tr.appendChild(tdManage);
+                tr.appendChild(tdComplete);
 
                 todoList.appendChild(tr);
 
-            titleInput.value = "";
-            subjectInput.value = "";
-            taskInput.value = "";
-            deadlineInput.value = "";
-            priorityInput.value = "";
-            titleInput.focus();
+                titleInput.value = "";
+                subjectInput.value = "";
+                taskInput.value = "";
+                deadlineInput.value = "";
+                priorityInput.value = "";
+                titleInput.focus();
+            })
         })
+
 
 
     </script>
@@ -96,13 +97,14 @@
 <body>
     <div class="todo-list">
         TODO LIST<br>
-        제목 : <input type="text" id="title" placeholder="제목" required="제목을 입력하세요." minlength="5"> <br>
-        과목 : <input type="text" id="subject" placeholder="과목"> <br>
-        할일 : <input type="text" id="task" placeholder="할일"> <br>
-        기한 : <input type="date" id="deadline" placeholder="기한"> <br>
-        우선순위 : <input type="number" id="priority" placeholder="우선순위"> <br>
+        제목 : <input type="text" id="title" placeholder="제목" minlength="5" required> <br>
+        과목 : <input type="text" id="subject" placeholder="과목" required> <br>
+        할일 : <input type="text" id="task" placeholder="할일" required> <br>
+        기한 : <input type="date" id="deadline" placeholder="기한" required> <br>
+        우선순위 : <input type="number" id="priority" placeholder="우선순위" min="1" max="5" required> <br>
         <button id="todoBtn">일정 등록</button>
     </div><br>
+
     <div class="todo-table">
         <h3>TODO LIST</h3>
         <table border="1">
@@ -114,7 +116,7 @@
                     <th>할일</th>
                     <th>기한</th>
                     <th>우선순위</th>
-                    <th>관리</th>
+                    <th>완료</th>
                 </tr>
             </thead>
             <tbody id="todoList">
