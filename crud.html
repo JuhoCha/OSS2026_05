@@ -38,7 +38,7 @@
                     return;
                 }
                 if (!priorityInput.checkValidity()) {
-                    alert("우선순위를 입력하세요.");
+                    alert("우선순위를 범위에 맞게 입력하세요.(1-20)");
                     priorityInput.focus();
                     return;
                 }
@@ -64,11 +64,15 @@
 
                 const tdPriority = document.createElement('td');
                 tdPriority.textContent = priorityInput.value;
+                //td추가부분
 
                 const tdComplete = document.createElement('td');
                 tdComplete.innerHTML = '<input type="checkbox">';
-                const tdcomplete = document.createElement("button");
-                tdcomplete.textContent = "삭제";
+                const tddeleteBtn = document.createElement("button");
+                tddeleteBtn.textContent = "삭제";
+                tddeleteBtn.addEventListener("click", function () {
+                    tr.remove();
+                });
 
                 tr.appendChild(tdId);
                 tr.appendChild(tdTitle);
@@ -77,6 +81,7 @@
                 tr.appendChild(tdDeadline);
                 tr.appendChild(tdPriority);
                 tr.appendChild(tdComplete);
+                tdComplete.appendChild(tddeleteBtn);
 
                 todoList.appendChild(tr);
 
@@ -101,7 +106,7 @@
         과목 : <input type="text" id="subject" placeholder="과목" required> <br>
         할일 : <input type="text" id="task" placeholder="할일" required> <br>
         기한 : <input type="date" id="deadline" placeholder="기한" required> <br>
-        우선순위 : <input type="number" id="priority" placeholder="우선순위" min="1" max="5" required> <br>
+        우선순위 : <input type="number" id="priority" placeholder="우선순위" min="1" max="20" required> <br>
         <button id="todoBtn">일정 등록</button>
     </div><br>
 
