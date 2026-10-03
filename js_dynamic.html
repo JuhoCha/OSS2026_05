@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script>
-        function delFruit(event){
+        function delFruit(event) {
             event.target.parentElement.remove(); //삭제버튼 누르면 li가 삭제되도록
         }
 
@@ -15,9 +15,9 @@
             const addB = document.querySelector('#addB');
             const textlist = document.querySelector('#textlist')//id 오타 조심;
 
-            addB.addEventListener("click", function(){
+            addB.addEventListener("click", function () {
                 const flist = inputtext.value.split(",");
-                for(const one of flist){
+                for (const one of flist) {
                     const li = document.createElement('li');
                     li.textContent = one + " ";
                     textlist.appendChild(li);
@@ -25,10 +25,11 @@
                     const btn = document.createElement('button');
                     btn.textContent = '삭제';
                     li.appendChild(btn);
-                    btn.addEventListener('click',delFruit);
+                    btn.addEventListener('click', delFruit);
                 }
+                inputtext.value = '';
             })
-            
+
             /*function addlist() {
                 const li = document.createElement('li');
                 const text = document.createElement('span');
